@@ -1,13 +1,14 @@
 import { BookEntity } from '../book/book.entity';
+import { IsString, IsArray } from 'class-validator';
 export class AutorDTO {
-    name: string;
-    libro: string[];
+    @IsString() name: string;
+    @IsArray() libro: string[];
 }
 
 // tslint:disable-next-line: max-classes-per-file
 export class AutorRO {
-    name: string;
-    libro: string[];
+    @IsString() name: string;
+    @IsArray() libro: string[];
     created: Date;
     update: Date;
 }

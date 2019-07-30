@@ -11,27 +11,27 @@ export class AutorService {
       private autorRepository: Repository <AutorEntity>,
       ) {}
 
-  async showAll() {
+  async showAll(): Promise<AutorEntity[]> {
       return await this.autorRepository.find();
   }
 
-  async create(data: Partial <AutorDTO>) { // Partial es cuando quieres mandar algunos datos, no todos
+  async create(data: AutorDTO): Promise<AutorEntity> {
       const autor = await this.autorRepository.create(data);
       await this.autorRepository.save(autor);
       return autor;
   }
 
-  async update(id: string, data: Partial <AutorDTO>) {
+  async update(id: string, data: Partial <AutorDTO>): Promise<AutorEntity> {
       await this.autorRepository.update({id}, data);
       const autor = await this.autorRepository.findOne({ where: {id}});
       return autor;
   }
 
-  async read( id: string) {
+  async read( id: string): Promise<AutorEntity> {
       return await this.autorRepository.findOne({where: {id}});
   }
 
-  async delete( id: string) {
+  async delete( id: string): Promise<AutorEntity> {
       const autor = await this.autorRepository.findOne({where: {id}});
       await this.autorRepository.delete( id);
       return autor;

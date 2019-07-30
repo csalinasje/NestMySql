@@ -14,11 +14,11 @@ export class BookService {
         private autorRepository: Repository <AutorEntity>,
     ) {}
 
-    async showAll() {
+    async showAll(): Promise<BookEntity[]> {
         return await  this.bookRepository.find();
     }
 
-    async create(data: any) {
+    async create(data: any): Promise<BookEntity[]> {
         const libro = await this.bookRepository.create(data);
         await this.bookRepository.save(libro);
         const autor = await this.autorRepository.findOne({where: {id: data.autor}});
@@ -28,17 +28,17 @@ export class BookService {
         return libro;
     }
 
-    async update(id: string, data: Partial <BookDTO>) {
+    async update(id: string, data: Partial <BookDTO>): Promise<BookEntity> {
         const libro = await this.bookRepository.findOne( {where: {id}});
         await this.bookRepository.update(id, data);
         return libro;
     }
 
-    async read(id: string) {
+    async read(id: string): Promise<BookEntity> {
         return await this.bookRepository.findOne({ where: {id}});
     }
 
-    async delete( id: string) {
+    async delete( id: string): Promise<BookEntity> {
         const libro = await this.bookRepository.findOne( {where: {id}});
         await this.bookRepository.delete(id);
         return libro;

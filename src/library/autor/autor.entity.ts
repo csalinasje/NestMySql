@@ -1,5 +1,5 @@
 
-import { Entity, PrimaryGeneratedColumn, Column,  OneToMany, CreateDateColumn  } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { BookEntity } from '../book/book.entity';
 
 @Entity('autor')
@@ -14,7 +14,7 @@ export class AutorEntity {
     @CreateDateColumn()
     created: Date;
 
-    @CreateDateColumn()
+    @UpdateDateColumn()
     updated: Date;
 
     @OneToMany( Type => BookEntity, book => book.autor )

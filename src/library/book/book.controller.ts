@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Param, Delete, Put, Body } from '@nestjs/common';
+import { Controller, Get, Post, Param, Delete, Put, Body, UsePipes } from '@nestjs/common';
 import { BookService } from './book.service';
 import { BookDTO } from './book.dto';
-import { Autor } from '../autor/autor.decorator';
+import { BookEntity } from './book.entity';
+import { ValidationPipe } from '../../shared/validation.pipe';
 
 @Controller('book')
 export class BookController {
@@ -10,27 +11,29 @@ export class BookController {
     }
 
     @Get()
-    showAll() {
-      return  this.bookService.showAll();
+    showAll(): Promise<BookEntity[]> {
+      return this.bookService.showAll();
    }
 
    @Get(':id')
-   findOne(@Param('id') id: string) {
+   findOne(@Param('id') id: string): Promise<BookEntity> {
        return this.bookService.read(id);
    }
 
    @Post()
-   create( @Body() libroDTO: BookDTO) {
-       return this.bookService.create( libroDTO);
+   @UsePipes(new ValidationPipe())
+   create( @Body() libroDTO: BookDTO): Promise<BookEntity[]> {
+       return this.bookService.create(libroDTO);
    }
 
    @Delete(':id')
-   delete(@Param( 'id') id: string) {
+   delete(@Param( 'id') id: string): Promise<BookEntity> {
        return this.bookService.delete( id);
    }
 
    @Put(':id')
-   update(@Body() updtaLibroDTO: BookDTO, @Param('id') id: string) {
+   @UsePipes(new ValidationPipe())
+   update(@Body() updtaLibroDTO: Partial<BookDTO>, @Param('id') id: string): Promise<BookEntity> {
        return this.bookService.update( id, updtaLibroDTO);
    }
 
