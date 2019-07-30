@@ -12,12 +12,12 @@ export class AutorController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id) {
+    findOne(@Param('id') id: string) {
         return this.autorService.read(id);
     }
 
     @Put(':id')
-    update(@Body() updateAutor: AutorDTO, @Param('id') id) {
+    update(@Body() updateAutor: AutorDTO, @Param('id') id: string) {
         return this.autorService.update(id, updateAutor);
     }
 
@@ -27,7 +27,7 @@ export class AutorController {
     }
 
     @Delete(':id')
-    delete(@Param('id') id) {
+    delete(@Param('id') id: string) {
         return this.autorService.delete(id);
     }
 

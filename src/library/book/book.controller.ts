@@ -5,17 +5,18 @@ import { Autor } from '../autor/autor.decorator';
 
 @Controller('book')
 export class BookController {
-    constructor(
-        private bookService: BookService,
-        ) {}
+
+    constructor(private bookService: BookService) {
+    }
+
     @Get()
     showAll() {
       return  this.bookService.showAll();
    }
 
-   @Get(':index')
-   findOne(@Param('index') index) {
-       return this.bookService.read(index);
+   @Get(':id')
+   findOne(@Param('id') id: string) {
+       return this.bookService.read(id);
    }
 
    @Post()
@@ -24,12 +25,12 @@ export class BookController {
    }
 
    @Delete(':id')
-   delete(@Param( 'id') id) {
+   delete(@Param( 'id') id: string) {
        return this.bookService.delete( id);
    }
 
    @Put(':id')
-   update(@Body() updtaLibroDTO: BookDTO, @Param('id') id) {
+   update(@Body() updtaLibroDTO: BookDTO, @Param('id') id: string) {
        return this.bookService.update( id, updtaLibroDTO);
    }
 

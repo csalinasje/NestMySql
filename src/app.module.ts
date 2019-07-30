@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LibraryModule } from './library/library.module';
 
-
 @Module({
   imports: [TypeOrmModule.forRoot(), LibraryModule],
   controllers: [AppController],

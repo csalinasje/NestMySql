@@ -15,15 +15,15 @@ export class AutorService {
       return await this.autorRepository.find();
   }
 
-  async create(data) {
+  async create(data: Partial <AutorDTO>) { // Partial es cuando quieres mandar algunos datos, no todos
       const autor = await this.autorRepository.create(data);
       await this.autorRepository.save(autor);
       return autor;
   }
 
   async update(id: string, data: Partial <AutorDTO>) {
-      const autor = await this.autorRepository.findOne({ where: {id}});
       await this.autorRepository.update({id}, data);
+      const autor = await this.autorRepository.findOne({ where: {id}});
       return autor;
   }
 

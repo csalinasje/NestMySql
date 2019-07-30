@@ -6,15 +6,12 @@ import { BookEntity } from './book/book.entity';
 import { AutorController } from './autor/autor.controller';
 import { AutorService } from './autor/autor.service';
 import { AutorEntity } from './autor/autor.entity';
-import { SubjectController } from './subject/subject.controller';
-import {  SubjectService } from './subject/subject.service';
-import { SubjectEntity } from './subject/subject.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([
-    BookEntity, AutorEntity, SubjectEntity,
+    BookEntity, AutorEntity,
   ])],
-  providers: [BookService, AutorService, SubjectService],
-  controllers: [BookController, AutorController, SubjectController],
+  providers: [BookService, AutorService],
+  controllers: [BookController, AutorController],
 })
 export class LibraryModule {}

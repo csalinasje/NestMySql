@@ -3,9 +3,9 @@
     "host": "localhost",
     "port": 3306,
     "username": "admin",
-    "password": "",
-    "database": "prueba2",
-    "entities": ["src/**/*.entity{.ts,.js}"],
+    "password": "admin",
+    "database": "library",
+    "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize": true,
     "loggin": true
 }
